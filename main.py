@@ -117,11 +117,12 @@ def sesAlgıla(kelime=None):#ses algılama fonksiyonunu yazıyoruz
             if exbilgi != bilgi:#bilginin değişip değişmediğini sorguluyor
                 exbilgi = bilgi#değişdi ise kaydediyoruz
                 bilgi1 = lower(bilgi)#küçük harfe dönüştürüyoruz
-                newbilgi = bilgi1.strip(" ")#boşluk karakterinden bölüyoruz ve bir list oluşturuyoruz
-                if len(newbilgi) >=5 and " ara" in newbilgi:#listin içinde ' ara' kelimesi var mı diye bakıyoruz
+                newbilgi = bilgi1+" "
+                print(newbilgi+"12")
+                if len(newbilgi) >=5 and " ara " in newbilgi:#listin içinde ' ara' kelimesi var mı diye bakıyoruz
                     bölüm = "ara"#bölümü ara diye değiştiriyoruz
                     break#döngüden çıkıyoruz
-                if len(newbilgi) >=4 and " aç" in newbilgi:#üsteki gibi ' aç'var mı diye bakıyoruz
+                if len(newbilgi) >=4 and " aç " in newbilgi:#üsteki gibi ' aç'var mı diye bakıyoruz
                     bölüm = "aç"#bölümü a. diye değiştiriyoruz
                     break#döngüden çıkıyoruz
                 secondilk = int(time.strftime("%S"))#secondilk güncelliyoruz
@@ -158,7 +159,7 @@ def sesAlgıla(kelime=None):#ses algılama fonksiyonunu yazıyoruz
             bilgison = lower(bilgison)#küçük harfe dönüşüyor
             bilgisons = "siz: "+bilgison#ekrana yazılması için bir yazı ayarlanıyor
             havali(bilgisons)#yazı ekrana yazılıyor
-            bilgison=bilgison[:len(bilgison)-3]]#bilginin son 3 hanesi silinip kaydediliyor
+            bilgison=bilgison[:len(bilgison)-3]#bilginin son 3 hanesi silinip kaydediliyor
             return bilgison#burada üstekinden farklı olarak bilgiyi direk çıkdı olarak ayarlıyoruz 
         else:#eger bölüm ikiside değil ise
             bilgison = lower(bilgison)#küçük harfe dönüşüyor
@@ -236,7 +237,6 @@ def algılama(bilgi):#algılama fonksyonunu ayarlıyoruz
         "arama yap":gog_src,
 
         "sistemi kapat":sys_exit,
-        "kendini öldür":sys_exit,
         "kendini kapat":sys_exit,
 
         "uyu artık":uyku_on,
