@@ -7,10 +7,6 @@ import random
 import sys
 
 
-
-dosya1 = open("kelimeler.txt","r")
-kelime_list = dosya1.readlines()
-dosya1.close()
 driver_path = "C:/Users/hakan/OneDrive/Masaüstü/kodlar/yapayzeka1.3/driver/chromedriver.exe"
 options = webdriver.ChromeOptions()
 options.add_argument("user-data-dir=C:/Users/hakan/AppData/Local/Google/Chrome/User Data/Default")
@@ -36,6 +32,7 @@ else:
     print("Sistem kapanıyor")
     time.sleep(2)
     exit()
+    
 def lower(kelimeilk:str):
     yenikelime = str()
     kelime = kelimeilk.replace(".","")
@@ -50,6 +47,7 @@ def lower(kelimeilk:str):
             else:
                 yenikelime += i
     return yenikelime
+
 def havali(parametre, time_sleep = 0.04):
     soz=[]
     for i in parametre+"\n":
@@ -58,6 +56,7 @@ def havali(parametre, time_sleep = 0.04):
         sys.stdout.write(str(soz[0]))
         sys.stdout.flush()
         soz.remove(i) 
+        
 def konuş(bilgi):
     bekle = len(bilgi)/10+0.6
     havali("Algılanıyor...")
@@ -78,6 +77,7 @@ def konuş(bilgi):
     bilgison = "Asistan:" + bilgi
     havali(bilgison)
     time.sleep(bekle)
+    
 def sesAlgıla(kelime=None):
     bölüm=str
     bilgi = str
@@ -147,7 +147,6 @@ def sesAlgıla(kelime=None):
             bilgison = ""
         if bölüm =="ara":
             bilgison = lower(bilgison)
-            kelime_list.append(bilgison)
             bilgisons = "siz: "+bilgison
             havali(bilgisons)
             bilgison=bilgison[:len(bilgison)-4]
@@ -155,14 +154,12 @@ def sesAlgıla(kelime=None):
             return "%20"
         elif bölüm == "aç":
             bilgison = lower(bilgison)
-            kelime_list.append(bilgison)
             bilgisons = "siz: "+bilgison
             havali(bilgisons)
             bilgison=bilgison[:len(bilgison)-3]
             return bilgison
         else:
             bilgison = lower(bilgison)
-            kelime_list.append(bilgison)
             bilgisons = "siz: "+bilgison
             havali(bilgisons)
             return bilgison
@@ -183,14 +180,12 @@ def sesAlgıla(kelime=None):
         mic.click()
     except:
         havali("bir hata oluşdu hata kodu 0005")
-
     if bilgison != "dinle beni":
         try:
             bilgison = br.find_element_by_xpath("""/html/body/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[2]/div[2]/c-wiz[2]/div[5]/div/div[1]/span[1]/span/span""").text
         except:
             bilgison = ""
     bilgison = lower(bilgison)
-    kelime_list.append(bilgison)
     bilgisons = "siz: "+bilgison
     havali(bilgisons)
     return bilgison
@@ -276,20 +271,7 @@ def algılama(bilgi):
         "tirendyol":op_trd,
         "tirentyol":op_trd,
 
-
         "%20":sy_idn,
-                
-        #"sesi kıs":ses_kıs,
-        #"sesi azalt":ses_kıs,
-        #"ses seviyesini azalt":ses_kıs,
-
-        #"sesi yükselt":ses_yükselt,
-        #"sesi artır":ses_yükselt,
-        #"ses seviyesini artır":ses_yükselt,
-
-        #"sesi kapat":ses_kapat,
-        
-        #"sesi aç":ses_aç,
 
         "":sy_anla
         
@@ -299,19 +281,25 @@ def algılama(bilgi):
 def sy_slm():
     slm = ["merhaba","merhabalar","selam","selamlar"]
     konuş(random.choice(slm))
+    
 def sy_iyi():
     iyi = ["iyiyim","iyidir","iyi","fena değil","şuanlık iyi","çok iyiyim","sesini duydum daha iyi oldum"]
     konuş(random.choice(iyi))
+    
 def sy_kod():
     konuş("Beni Arif Hakan Çankı diye biri kodlayarak geliştirdi.Ama cevap veremeyeceğim sorular var")
+    
 def sy_re():
     re = ["önemli değil","rica ederim","sağol","benim işim bu","yardım edebildiysem ne mutlu bana"]
     konuş(random.choice(re))
+    
 def sy_anla():
     konuş("dediğini anlamadım tekrar deneyin")
+    
 def sy_saat():
     saat = "saat: "+str(time.strftime("%H"))+":"+str(time.strftime("%M"))
     konuş(saat)
+    
 def sy_gün(bilgi=None):
     gün = str(time.strftime("%d"))
     günson = "ayın "+gün+"."+" günü"
@@ -319,6 +307,7 @@ def sy_gün(bilgi=None):
         return gün
     else:
         konuş(günson)
+        
 def sy_hf(bilgi=None):
     günin = str(time.strftime("%A"))
     günler = {
@@ -336,12 +325,14 @@ def sy_hf(bilgi=None):
     else:
         günk = "bu gün günlerden "+güntr
         konuş(günk)
+        
 def sy_ayk():
     ay1 = " "+str(time.strftime("%m"))
     if " 0" in ay1:
         ay = ay1[1:]
     ayk = "yılın "+ay+"."+" ayı"
     konuş(ayk)
+    
 def sy_ayh(bilgi=None):
     ay = str(time.strftime("%m"))
     aylar={
@@ -364,6 +355,7 @@ def sy_ayh(bilgi=None):
     else:
         ayhk = ayh+" ayındayız"
         konuş(ayhk)
+        
 def sy_ylj(bilgi=None):
     yıl = str(time.strftime("%Y"))
     yılk = yıl+" yılındayız"
@@ -371,6 +363,7 @@ def sy_ylj(bilgi=None):
         return yıl
     else:
         konuş(yılk)
+        
 def sy_yıl():
     yıl = str(sy_ylj("tam"))
     ay = str(sy_ayh("tam"))
@@ -378,8 +371,10 @@ def sy_yıl():
     hafta = str(sy_hf("tam"))
     tarih1 = (hafta+" "+gün+" "+ay+" "+yıl)
     konuş(tarih1)
+    
 def sy_idn():
     print("")
+    
 def gog_src(aramak=None):
     if aramak == None: 
         konuş("aramak istediğiniz şeyi söyleyin")
@@ -391,37 +386,43 @@ def gog_src(aramak=None):
     Url = "https://www.google.com/search?client=opera&q="+ara
     webbrowser.open_new_tab(Url)
     uyku_on("ara")
+    
 def op_ig():
     konuş("instagram açılıyor")
     webbrowser.open_new_tab("https://www.instagram.com")
     uyku_on("aç")
+    
 def op_yt():
     konuş("youtube açılıyor")
     webbrowser.open_new_tab("https://www.youtube.com")
     uyku_on("aç")
+    
 def op_twt():
     konuş("twitter açılıyor")
     webbrowser.open_new_tab("https://www.twitter.com")
     uyku_on("aç")
+    
 def op_trd():
     konuş("trendyol açılıyor")
     webbrowser.open_new_tab("https://www.trendyol.com")
     uyku_on("aç")
+    
 def uyku_on(koşul=None):
     if koşul == None:
         konuş("uyku modu aktif")
     bilgi = sesAlgıla("uyku")
     algılama(bilgi)
+    
 def uyku_off():
     konuş("dinliyorum")
+    
 def sys_exit():
     konuş("sistem kapanıyor son 5 saniye")
     time.sleep(5)
     br.close()
-    dosya2= open("kelimeler.txt","w")
-    dosya2.writelines(kelime_list)
-    
     exit()
+    
+    
 while True:
     ara = sesAlgıla()
     algılama(ara)
