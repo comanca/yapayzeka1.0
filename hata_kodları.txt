@@ -1,4 +1,4 @@
-0001 = sistem başlarken dilin seçilmesinde soru oldugunu belirtir
+0001 = sistem başlarken dilin seçilmesinde sorun oldugunu belirtir
 0002 = yapay zeka konuşurken sistemin konuşma eglemini gerçekleştiren bölümde hata oldugunu belirtir 
 0003 = yapay zekanın dinleme eylemini başlatamadıgını belirtir
 0004 = genel bölümde yapay zekanın dinleme eylemini kapatamandıgını belirtir
